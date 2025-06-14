@@ -1,0 +1,83 @@
+.wp-block-omg-lol-now .omg-lol-now-content {
+    padding: 1em;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.wp-block-omg-lol-now .omg-lol-now-content p {
+    margin: 0 0 1em;
+}
+
+.wp-block-omg-lol-now .omg-lol-now-content p:last-child {
+    margin-bottom: 0;
+}
+
+.wp-block-omg-lol-now .omg-lol-now-content h1,
+.wp-block-omg-lol-now .omg-lol-now-content h2,
+.wp-block-omg-lol-now .omg-lol-now-content h3,
+.wp-block-omg-lol-now .omg-lol-now-content h4,
+.wp-block-omg-lol-now .omg-lol-now-content h5,
+.wp-block-omg-lol-now .omg-lol-now-content h6 {
+    margin: 1.5em 0 0.5em;
+    line-height: 1.2;
+}
+
+.wp-block-omg-lol-now .omg-lol-now-content ul,
+.wp-block-omg-lol-now .omg-lol-now-content ol {
+    margin: 1em 0;
+    padding-left: 2em;
+}
+
+.wp-block-omg-lol-now .omg-lol-now-content li {
+    margin: 0.5em 0;
+}
+
+.wp-block-omg-lol-now .omg-lol-now-content blockquote {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 4px solid #ddd;
+    color: #666;
+}
+
+.wp-block-omg-lol-now .omg-lol-now-content code {
+    padding: 0.2em 0.4em;
+    background: #f0f0f0;
+    border-radius: 3px;
+    font-family: monospace;
+}
+
+.wp-block-omg-lol-now .omg-lol-now-content pre {
+    margin: 1em 0;
+    padding: 1em;
+    background: #f0f0f0;
+    border-radius: 4px;
+    overflow-x: auto;
+}
+
+.wp-block-omg-lol-now .omg-lol-now-content pre code {
+    padding: 0;
+    background: none;
+}
+
+.wp-block-omg-lol-now .omg-lol-now-content img {
+    max-width: 100%;
+    height: auto;
+    margin: 1em 0;
+}
+
+.wp-block-omg-lol-now .omg-lol-now-content a {
+    color: #0073aa;
+    text-decoration: none;
+}
+
+.wp-block-omg-lol-now .omg-lol-now-content a:hover {
+    color: #00a0d2;
+    text-decoration: underline;
+}
+
+.wp-block-omg-lol-now .omg-lol-now-content hr {
+    margin: 2em 0;
+    border: 0;
+    border-top: 1px solid #ddd;
+} 
