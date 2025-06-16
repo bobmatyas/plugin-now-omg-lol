@@ -1,7 +1,6 @@
 import { registerBlockType } from '@wordpress/blocks';
-import { useSelect } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
-import { TextControl, PanelBody } from '@wordpress/components';
+import { TextControl, PanelBody, Button, RangeControl, ColorPicker, borderRadius } from '@wordpress/components';
 import { InspectorControls } from '@wordpress/block-editor';
 import { useState, useEffect } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
@@ -65,47 +64,69 @@ registerBlockType('omg-lol-now/now-page', {
             type: 'string',
             default: '',
         },
+        backgroundColor: {
+            type: 'string',
+            default: '#ffffff',
+        },
+        margin: {
+            type: 'number',
+            default: 0,
+        },
+        padding: {
+            type: 'number',
+            default: 20,
+        },
+        borderRadius: {
+            type: 'number',
+            default: 0,
+        },
     },
     edit: function Edit({ attributes, setAttributes }) {
         const [nowContent, setNowContent] = useState('');
         const [isLoading, setIsLoading] = useState(false);
         const [error, setError] = useState(null);
+        const [tempUsername, setTempUsername] = useState(attributes.username);
 
-        useEffect(() => {
-            if (!attributes.username) {
-                setNowContent('');
-                return;
+        const fetchNowContent = async (username) => {
+            setIsLoading(true);
+            setError(null);
+            try {
+                const data = await apiFetch({
+                    path: `/omg-lol-now/v1/now/${encodeURIComponent(username)}`,
+                });
+                
+            
+                // Parse markdown and sanitize HTML
+                const parsedContent = marked(data.content);
+                console.log(parsedContent);
+                setNowContent(parsedContent);
+            } catch (err) {
+                console.error('Error fetching now page:', err);
+                setError(err.message || __('Failed to fetch now page content. Please check if the username is correct and try again.', 'omg-lol-now'));
+            } finally {
+                setIsLoading(false);
             }
+        };
 
-            const fetchNowContent = async () => {
-                setIsLoading(true);
-                setError(null);
-                try {
-                    const data = await apiFetch({
-                        path: `/omg-lol-now/v1/now/${encodeURIComponent(attributes.username)}`,
-                    });
-                    
-                    // Debug the raw content
-                    console.log('Raw content:', data.content);
-                    
-                    // Parse markdown and sanitize HTML
-                    const parsedContent = marked(data.content);
-                    console.log('Parsed markdown:', parsedContent);
-                    
-                    const sanitizedContent = sanitizeHtml(parsedContent);
-                    console.log('Sanitized HTML:', sanitizedContent);
-                    
-                    setNowContent(sanitizedContent);
-                } catch (err) {
-                    console.error('Error fetching now page:', err);
-                    setError(err.message || __('Failed to fetch now page content. Please check if the username is correct and try again.', 'omg-lol-now'));
-                } finally {
-                    setIsLoading(false);
-                }
-            };
-
-            fetchNowContent();
+        // Only fetch content when username changes in attributes
+        useEffect(() => {
+            if (attributes.username) {
+                fetchNowContent(attributes.username);
+            } else {
+                setNowContent('');
+            }
         }, [attributes.username]);
+
+        const handleSetUsername = () => {
+            setAttributes({ username: tempUsername });
+        };
+
+        const containerStyle = {
+            backgroundColor: attributes.backgroundColor,
+            margin: `${attributes.margin}px`,
+            padding: `${attributes.padding}px`,
+            borderRadius: `${attributes.borderRadius}px`,
+        };
 
         return (
             <>
@@ -113,9 +134,57 @@ registerBlockType('omg-lol-now/now-page', {
                     <PanelBody title={__('OMG.lol Now Page Settings', 'omg-lol-now')}>
                         <TextControl
                             label={__('OMG.lol Username', 'omg-lol-now')}
-                            value={attributes.username}
-                            onChange={(value) => setAttributes({ username: value })}
+                            value={tempUsername}
+                            onChange={(value) => setTempUsername(value)}
                             help={__('Enter the OMG.lol username to display.', 'omg-lol-now')}
+							__next40pxDefaultSize={ true }
+							__nextHasNoMarginBottom={ true }
+						/>
+                        <Button
+                            variant="primary"
+                            onClick={handleSetUsername}
+                            style={{ marginTop: '10px' }}
+                        >
+                            {__('Set Username', 'omg-lol-now')}
+                        </Button>
+                    </PanelBody>
+                    <PanelBody title={__('Style Settings', 'omg-lol-now')} initialOpen={false}>
+                        <div style={{ marginBottom: '16px' }}>
+                            <label style={{ display: 'block', marginBottom: '8px' }}>
+                                {__('Background Color', 'omg-lol-now')}
+                            </label>
+                            <ColorPicker
+                                color={attributes.backgroundColor}
+                                onChangeComplete={(value) => setAttributes({ backgroundColor: value.hex })}
+                                disableAlpha
+                            />
+                        </div>
+                        <RangeControl
+                            label={__('Margin (px)', 'omg-lol-now')}
+                            value={attributes.margin}
+                            onChange={(value) => setAttributes({ margin: value })}
+                            min={0}
+                            max={50}
+							__next40pxDefaultSize={ true }
+							__nextHasNoMarginBottom={ true }
+                        />
+                        <RangeControl
+                            label={__('Padding (px)', 'omg-lol-now')}
+                            value={attributes.padding}
+                            onChange={(value) => setAttributes({ padding: value })}
+                            min={0}
+                            max={50}
+							__next40pxDefaultSize={ true }
+							__nextHasNoMarginBottom={ true }
+                        />
+						<RangeControl
+                            label={__('Border Radius (px)', 'omg-lol-now')}
+                            value={attributes.borderRadius}
+                            onChange={(value) => setAttributes({ borderRadius: value })}
+                            min={0}
+                            max={50}
+							__next40pxDefaultSize={ true }
+							__nextHasNoMarginBottom={ true }
                         />
                     </PanelBody>
                 </InspectorControls>
@@ -131,13 +200,14 @@ registerBlockType('omg-lol-now/now-page', {
                     {!attributes.username && (
                         <div className="components-notice is-info">
                             <div className="components-notice__content">
-                                <p>{__('Please enter an OMG.lol username in the block settings.', 'omg-lol-now')}</p>
+                                <p>{__('Please enter an OMG.lol username and click "Set Username" in the block settings.', 'omg-lol-now')}</p>
                             </div>
                         </div>
                     )}
                     {nowContent && (
                         <div 
-                            className="omg-lol-now-content markdown-body"
+                            className="cows"
+                            style={containerStyle}
                             dangerouslySetInnerHTML={{ __html: nowContent }}
                         />
                     )}

@@ -1,6 +1,7 @@
 <?php
 /**
  * The main plugin file.
+ *
  * @package OMG_LOL_Now
  */
 
@@ -53,7 +54,7 @@ class OMG_LOL_Now {
 		add_shortcode( 'omg_lol_now', array( $this, 'render_shortcode' ) );
 		// Register block.
 		add_action( 'init', array( $this, 'register_block' ) );
-		// Register REST API endpoint
+		// Register REST API endpoint.
 		add_action( 'rest_api_init', array( $this, 'register_rest_routes' ) );
 	}
 
@@ -113,9 +114,11 @@ class OMG_LOL_Now {
 			return $content;
 		}
 
-		return rest_ensure_response( array(
-			'content' => $content,
-		) );
+		return rest_ensure_response(
+			array(
+				'content' => $content,
+			)
+		);
 	}
 
 	/**
@@ -144,18 +147,41 @@ class OMG_LOL_Now {
 	 */
 	public function render_block( $attributes ) {
 		$username = isset( $attributes['username'] ) ? $attributes['username'] : get_option( 'omg_lol_now_username', '' );
-		return $this->get_now_page_content( $username );
+		// Get the content.
+			// Build the style string.
+			$style = '';
+			if ( isset( $attributes['backgroundColor'] ) ) {
+				$style .= 'background-color: ' . esc_attr( $attributes['backgroundColor'] ) . ';';
+			}
+			if ( isset( $attributes['margin'] ) ) {
+				$style .= 'margin: ' . esc_attr( $attributes['margin'] ) . 'px;';
+			}
+			if ( isset( $attributes['padding'] ) ) {
+				$style .= 'padding: ' . esc_attr( $attributes['padding'] ) . 'px;';
+			}
+			if ( isset( $attributes['borderRadius'] ) ) {
+				$style .= 'border-radius: ' . esc_attr( $attributes['borderRadius'] ) . 'px;';
+			}
+		$content = $this->get_now_page_content( $username, $style );
+		// Build the style string.
+		// Wrap the content in a div with the styles.
+		return sprintf(
+			'<div class="markdown-body wp-block-omg-lol-now" style="%s">%s</div>',
+			'',
+			$content
+		);
 	}
 
 	/**
 	 * Get the now page content.
 	 *
 	 * @param string $username The OMG.lol username.
+	 * @param string $style The style string.
 	 * @return string
 	 */
-	private function get_now_page_content( $username ) {
+	private function get_now_page_content( $username, $style = '' ) {
 		if ( empty( $username ) ) {
-			return '<p>' . esc_html__( 'Please configure the OMG.lol username in the plugin settings.', 'omg-lol-now' ) . '</p>';
+			return '<p>' . esc_html__( 'Please configure the OMG.lol username in the plugin settings.', 'now-omg-lol' ) . '</p>';
 		}
 
 		$api     = new OMG_LOL_Now_API();
@@ -165,7 +191,7 @@ class OMG_LOL_Now {
 			return '<p>' . esc_html( $content->get_error_message() ) . '</p>';
 		}
 
-		return '<div class="omg-lol-now-content">' . wp_kses_post( $content ) . '</div>';
+		return '<div class="omg-lol-now-content" style="' . esc_attr( $style ) . '">' . wp_kses_post( $content ) . '</div>';
 	}
 
 	/**
