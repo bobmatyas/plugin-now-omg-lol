@@ -56,6 +56,14 @@ function omg_lol_now_enqueue_block_editor_assets() {
 		array(),
 		OMG_LOL_NOW_VERSION
 	);
+
+	// Always load Font Awesome in editor since we can't predict if icons will be used.
+	wp_enqueue_style(
+		'font-awesome',
+		'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css',
+		array(),
+		'6.4.0'
+	);
 }
 add_action( 'enqueue_block_editor_assets', 'omg_lol_now_enqueue_block_editor_assets' );
 
@@ -73,3 +81,31 @@ function omg_lol_now_enqueue_frontend_styles() {
 	);
 }
 add_action( 'wp_enqueue_scripts', 'omg_lol_now_enqueue_frontend_styles' );
+
+/**
+ * Conditionally enqueue Font Awesome on frontend when needed.
+ *
+ * @return void
+ */
+function omg_lol_now_maybe_enqueue_font_awesome() {
+	global $post;
+	
+	if ( ! $post ) {
+		return;
+	}
+
+	// Check if the post content contains our shortcode or block.
+	$content = $post->post_content;
+	if ( has_shortcode( $content, 'omg_lol_now' ) || 
+		 strpos( $content, 'wp-block-omg-lol-now' ) !== false ||
+		 strpos( $content, 'omg-lol-now/now-page' ) !== false ) {
+		
+		wp_enqueue_style(
+			'font-awesome',
+			'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css',
+			array(),
+			'6.4.0'
+		);
+	}
+}
+add_action( 'wp_enqueue_scripts', 'omg_lol_now_maybe_enqueue_font_awesome' );

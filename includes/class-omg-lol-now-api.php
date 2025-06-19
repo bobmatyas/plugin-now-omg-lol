@@ -65,12 +65,19 @@ class OMG_LOL_Now_API {
 	 * @return string The processed content.
 	 */
 	private function process_content( $content ) {
-		// Remove emoji-style placeholders while preserving {last-updated}.
-		$content = preg_replace( '/\{[a-z-]+(?<!last-updated)\}/', '', $content );
-
-		// Remove the "Back to my omg.lol page!" link with flexible line breaks.
-		$pattern = '/[\r\n]+\s*\[Back to my omg\.lol page!\]\(https:\/\/\{address\}\.omg\.lol\)/';
-		$content = preg_replace( $pattern, '', $content );
+		// Remove the "Back to my omg.lol page!" link.
+		$content = preg_replace( '/\[Back to my omg\.lol page!\]\(https:\/\/\{address\}\.omg\.lol\)/', '', $content );
+		
+		// Convert icon aliases to Font Awesome references.
+		$content = preg_replace_callback( '/\{([a-z-]+)\}/', function( $matches ) {
+			$icon_name = $matches[1];
+			// Skip special placeholders like {last-updated}.
+			if ( in_array( $icon_name, array( 'last-updated' ) ) ) {
+				return $matches[0];
+			}
+			return '<i class="fa-solid fa-' . esc_attr( $icon_name ) . '"></i>';
+		}, $content );
+		
 
 		// Convert markdown to HTML.
 		if ( class_exists( 'Parsedown' ) ) {
