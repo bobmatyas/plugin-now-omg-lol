@@ -67,7 +67,10 @@ class OMG_LOL_Now_API {
 	private function process_content( $content ) {
 		// Remove the "Back to my omg.lol page!" link.
 		$content = preg_replace( '/\[Back to my omg\.lol page!\]\(https:\/\/\{address\}\.omg\.lol\)/', '', $content );
-		
+
+		// Remove the profile picture placeholder.
+		$content = preg_replace( '/\{profile-picture\}/', '', $content );
+	
 		// Convert icon aliases to Font Awesome references.
 		$content = preg_replace_callback( '/\{([a-z-]+)\}/', function( $matches ) {
 			$icon_name = $matches[1];

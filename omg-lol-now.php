@@ -26,6 +26,7 @@ define( 'OMG_LOL_NOW_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 require_once OMG_LOL_NOW_PLUGIN_DIR . 'includes/class-omg-lol-now.php';
 require_once OMG_LOL_NOW_PLUGIN_DIR . 'includes/class-omg-lol-now-admin.php';
 require_once OMG_LOL_NOW_PLUGIN_DIR . 'includes/class-omg-lol-now-api.php';
+require_once OMG_LOL_NOW_PLUGIN_DIR . 'includes/Parsedown/Parsedown.php';
 
 /**
  * Initialize the plugin.

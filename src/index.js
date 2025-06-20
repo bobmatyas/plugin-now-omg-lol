@@ -98,7 +98,6 @@ registerBlockType('omg-lol-now/now-page', {
             
                 // Parse markdown and sanitize HTML
                 const parsedContent = marked(data.content);
-                console.log(parsedContent);
                 setNowContent(parsedContent);
             } catch (err) {
                 console.error('Error fetching now page:', err);
