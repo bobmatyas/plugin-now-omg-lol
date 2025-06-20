@@ -1,62 +1,42 @@
-# OMG.lol Now Page WordPress Plugin
+# ✨ Now Page via OMG.lol Connector
 
-A WordPress plugin that allows you to display OMG.lol now pages on your WordPress site using either a block or shortcode.
+**Effortlessly bring your OMG.lol Now Page to life on your WordPress site.**
 
-## Features
+Whether you're letting visitors know what you're up to, maintaining a personal status board, or just showing off your current vibe, this plugin makes it a breeze. Drop in a block, add a shortcode, and your Now Page is front and center — clean, simple, and totally you.
 
-- Display OMG.lol now pages using a Gutenberg block or shortcode
-- Caching support to prevent excessive API calls
-- Admin settings page to configure default username
-- Markdown support for content formatting
-- Responsive design
+---
 
-## Installation
+## 🚀 Features
 
-1. Download the plugin files
-2. Upload the plugin folder to your `/wp-content/plugins/` directory
-3. Activate the plugin through the 'Plugins' menu in WordPress
-4. Go to Settings > OMG.lol Now to configure your default username
+- Embed your OMG.lol Now Page via block or shortcode  
+- Built-in caching to reduce API calls and improve performance  
+- Easy-to-use settings page to define a default username
 
-## Usage
+---
 
-### Block Editor
+## 🔧 Installation
 
-1. Add a new block
-2. Search for "OMG.lol Now Page"
-3. Configure the username (optional - will use default if left empty)
+1. Download the plugin files  
+2. Upload them to `/wp-content/plugins/`  
+3. Activate via **Plugins > Installed Plugins** in your WP dashboard  
+4. Visit **Settings > OMG.lol Now** to set your default username
 
-### Shortcode
+---
 
-Use the following shortcode in your posts or pages:
+## 🛠️ Usage
 
-```
-[omg_lol_now]
-```
+### 🧱 Block Editor
 
-Or specify a different username:
+1. Add a new block in the editor  
+2. Search for **"OMG.lol Now Page"**  
+3. Optionally enter a username (uses the default if left blank)
 
-```
-[omg_lol_now username="foobar"]
-```
+### 🔤 Shortcode
 
-## Development
+Embed the Now Page using this shortcode:
 
-### Prerequisites
+`[omg_lol_now]`
 
-- Node.js
-- npm
+Need to override the username?
 
-### Setup
-
-1. Clone the repository
-2. Run `npm install` to install dependencies
-3. Run `npm run build` to build the block
-4. Run `npm run start` for development
-
-## License
-
-This plugin is licensed under the GPL v2 or later.
-
-## Credits
-
-Created by [Your Name] 
+`[omg_lol_now username="your_username"]`
