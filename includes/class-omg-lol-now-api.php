@@ -5,9 +5,15 @@
  * @link       https://omg.lol/now
  * @package    OMG_LOL_Now
  * @since      1.0.0
- *
- * @package    OMG_LOL_Now
  * @subpackage OMG_LOL_Now/includes
+ */
+
+declare(strict_types=1);
+
+/**
+ * The API functionality of the plugin.
+ *
+ * @package OMG_LOL_Now
  */
 class OMG_LOL_Now_API {
 	/**
@@ -70,21 +76,29 @@ class OMG_LOL_Now_API {
 
 		// Remove the profile picture placeholder.
 		$content = preg_replace( '/\{profile-picture\}/', '', $content );
-	
-		// Convert icon aliases to Font Awesome references.
-		$content = preg_replace_callback( '/\{([a-z-]+)\}/', function( $matches ) {
-			$icon_name = $matches[1];
-			// Skip special placeholders like {last-updated}.
-			if ( in_array( $icon_name, array( 'last-updated' ) ) ) {
-				return $matches[0];
-			}
-			return '<i class="fa-solid fa-' . esc_attr( $icon_name ) . '"></i>';
-		}, $content );
-		
 
-		// Convert markdown to HTML.
-		if ( class_exists( 'Parsedown' ) ) {
-			$parsedown = new Parsedown();
+		// Convert icon aliases to Font Awesome references.
+		$content = preg_replace_callback(
+			'/\{([a-z-]+)\}/',
+			function ( $matches ) {
+				$icon_name = $matches[1];
+				// Skip special placeholders like {last-updated}.
+				if ( in_array( $icon_name, array( 'last-updated' ) ) ) {
+					return $matches[0];
+				}
+				return '<i class="fa-solid fa-' . esc_attr( $icon_name ) . '"></i>';
+			},
+			$content
+		);
+
+		// Convert markdown to HTML using namespaced Parsedown.
+		if ( ! class_exists( 'OMG_LOL_Now_Vendor_Parsedown' ) ) {
+			error_log('OMG_LOL_Now_Vendor_Parsedown class does NOT exist in frontend!');
+		} else {
+			error_log('OMG_LOL_Now_Vendor_Parsedown class exists in frontend.');
+		}
+		if ( class_exists( 'OMG_LOL_Now_Vendor_Parsedown' ) ) {
+			$parsedown = new OMG_LOL_Now_Vendor_Parsedown();
 			$content = $parsedown->text( $content );
 		}
 

@@ -1,0 +1,21 @@
+{
+    "name": "bobmatyas/omg-lol-now",
+    "description": "Display OMG.lol /now pages in WordPress using blocks or shortcodes",
+    "type": "wordpress-plugin",
+    "require": {
+        "erusev/parsedown": "^1.7"
+    },
+    "require-dev": {
+        "brianhenryie/strauss": "^0.22"
+    },
+    "extra": {
+        "strauss": {
+            "target_directory": "includes/vendor",
+            "namespace_prefix": "OMG_LOL_Now\\Vendor\\",
+            "classmap_prefix": "OMG_LOL_Now_Vendor_"
+        }
+    },
+    "scripts": {
+        "strauss": "strauss"
+    }
+} 

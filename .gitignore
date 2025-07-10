@@ -1,25 +1,7 @@
-# Node.js dependencies
+/vendor/
+/composer.lock
+/includes/vendor/
 node_modules/
-package-lock.json
-
-# Build files
 build/
-dist/
-
-# IDE and editor files
-.idea/
-.vscode/
-*.swp
-*.swo
 .DS_Store
-Thumbs.db
-
-# Environment files
-.env
-.env.*
-!.env.example
-
-# Build artifacts
-*.zip
-*.tar.gz
-*.tgz 
+*.log 
