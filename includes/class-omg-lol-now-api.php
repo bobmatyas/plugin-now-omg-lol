@@ -45,7 +45,7 @@ class OMG_LOL_Now_API {
 		if ( empty( $data ) || ! isset( $data['response']['now']['content'] ) ) {
 			return new WP_Error(
 				'invalid_response',
-				__( 'Invalid response from OMG.lol API.', 'now-omg-lol' )
+				__( 'Invalid response from OMG.lol API.', 'now-page-via-omg-lol-connector' )
 			);
 		}
 
@@ -96,7 +96,7 @@ class OMG_LOL_Now_API {
 			),
 			array(
 				'',
-				'<span class="omg-lol-last-updated">' . esc_html__( 'Last updated:', 'now-omg-lol' ) . ' ' . date_i18n( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ) ) . '</span>',
+				'<span class="omg-lol-last-updated">' . esc_html__( 'Last updated:', 'now-page-via-omg-lol-connector' ) . ' ' . date_i18n( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ) ) . '</span>',
 			),
 			$content
 		);

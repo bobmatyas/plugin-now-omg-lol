@@ -181,7 +181,7 @@ class OMG_LOL_Now {
 	 */
 	private function get_now_page_content( $username, $style = '' ) {
 		if ( empty( $username ) ) {
-			return '<p>' . esc_html__( 'Please configure the OMG.lol username in the plugin settings.', 'now-omg-lol' ) . '</p>';
+			return '<p>' . esc_html__( 'Please configure the OMG.lol username in the plugin settings.', 'now-page-via-omg-lol-connector' ) . '</p>';
 		}
 
 		$api     = new OMG_LOL_Now_API();

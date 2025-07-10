@@ -11,8 +11,8 @@ class OMG_LOL_Now_Admin {
 	 */
 	public function add_plugin_admin_menu() {
 		add_options_page(
-			__( 'Now via OMG.lol Settings', 'now-omg-lol' ),
-			__( 'Now via OMG.lol', 'now-omg-lol' ),
+					__( 'Now via OMG.lol Settings', 'now-page-via-omg-lol-connector' ),
+		__( 'Now via OMG.lol', 'now-page-via-omg-lol-connector' ),
 			'manage_options',
 			'omg-lol-now',
 			array( $this, 'display_plugin_admin_page' )
@@ -50,7 +50,7 @@ class OMG_LOL_Now_Admin {
 		add_settings_error(
 			'omg_lol_now_messages',
 			'omg_lol_now_message',
-			__( 'Cache cleared successfully.', 'now-omg-lol' ),
+			__( 'Cache cleared successfully.', 'now-page-via-omg-lol-connector' ),
 			'updated'
 		);
 	}
@@ -75,13 +75,13 @@ class OMG_LOL_Now_Admin {
 				<table class="form-table">
 					<tr>
 						<th scope="row">
-							<label for="omg_lol_now_username"><?php esc_html_e( 'OMG.lol Username', 'now-omg-lol' ); ?></label>
+							<label for="omg_lol_now_username"><?php esc_html_e( 'OMG.lol Username', 'now-page-via-omg-lol-connector' ); ?></label>
 						</th>
 						<td>
 							<input type="text" id="omg_lol_now_username" name="omg_lol_now_username" 
 								value="<?php echo esc_attr( get_option( 'omg_lol_now_username' ) ); ?>" class="regular-text">
 							<p class="description">
-								<?php esc_html_e( 'Enter your OMG.lol username (without the @ symbol).', 'now-omg-lol' ); ?>
+								<?php esc_html_e( 'Enter your OMG.lol username (without the @ symbol).', 'now-page-via-omg-lol-connector' ); ?>
 							</p>
 						</td>
 					</tr>
@@ -91,19 +91,19 @@ class OMG_LOL_Now_Admin {
 
 			<form method="post" action="">
 				<?php wp_nonce_field( 'omg_lol_now_clear_cache' ); ?>
-				<input type="submit" name="omg_lol_now_clear_cache" class="button button-secondary" value="<?php esc_attr_e( 'Clear Cache', 'now-omg-lol' ); ?>">
+				<input type="submit" name="omg_lol_now_clear_cache" class="button button-secondary" value="<?php esc_attr_e( 'Clear Cache', 'now-page-via-omg-lol-connector' ); ?>">
 			</form>
 
 			<div class="usage-instructions">
-				<h2><?php esc_html_e( 'Usage Instructions', 'now-omg-lol' ); ?></h2>
-				<h3><?php esc_html_e( 'Shortcode', 'now-omg-lol' ); ?></h3>
-				<p><?php esc_html_e( 'Use the following shortcode to display your now page:', 'now-omg-lol' ); ?></p>
+				<h2><?php esc_html_e( 'Usage Instructions', 'now-page-via-omg-lol-connector' ); ?></h2>
+				<h3><?php esc_html_e( 'Shortcode', 'now-page-via-omg-lol-connector' ); ?></h3>
+				<p><?php esc_html_e( 'Use the following shortcode to display your now page:', 'now-page-via-omg-lol-connector' ); ?></p>
 				<code>[omg_lol_now]</code>
-				<p><?php esc_html_e( 'Or specify a different username:', 'now-omg-lol' ); ?></p>
+				<p><?php esc_html_e( 'Or specify a different username:', 'now-page-via-omg-lol-connector' ); ?></p>
 				<code>[omg_lol_now username="foobar"]</code>
 
-				<h3><?php esc_html_e( 'Block', 'now-omg-lol' ); ?></h3>
-				<p><?php esc_html_e( 'Search for "OMG.lol Now Page" in the block inserter.', 'now-omg-lol' ); ?></p>
+				<h3><?php esc_html_e( 'Block', 'now-page-via-omg-lol-connector' ); ?></h3>
+				<p><?php esc_html_e( 'Search for "OMG.lol Now Page" in the block inserter.', 'now-page-via-omg-lol-connector' ); ?></p>
 			</div>
 		</div>
 		<?php

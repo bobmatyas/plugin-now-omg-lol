@@ -7,7 +7,7 @@
  * Author URI: https://www.bobmatyas.com
  * License: GPL v2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain: now-omg-lol
+ * Text Domain: now-page-via-omg-lol-connector
  *
  * @package OMG_LOL_Now
  */
