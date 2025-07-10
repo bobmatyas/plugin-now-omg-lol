@@ -32,9 +32,17 @@ Whether you're letting visitors know what you're up to, maintaining a personal s
 * Community engagement
 * Keeping visitors informed about what you're working on
 
+== External services == 
+
+This plugin connects to OMG.lol to retreive the contents of your OMG.lol /Now page.
+
+No visitor or user data is sent to OMG.lol. The plugin only retreives the content.
+
+OMG.lol has their own [terms of service](https://home.omg.lol/info/legal#terms-of-service) and [privacy policy](https://home.omg.lol/info/legal#privacy-policy).
+
 == Installation ==
 
-1. Upload the plugin files to the `/wp-content/plugins/now-omg-lol` directory, or install through WordPress admin
+1. Upload the plugin files to the `/wp-content/plugins/now-page-via-omg-lol-connector` directory, or install through WordPress admin
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Visit **Settings > Now via OMG.lol** to configure your default username
 4. Start using the block or shortcode to display your Now Page
