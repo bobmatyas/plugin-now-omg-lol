@@ -8,11 +8,11 @@ Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Effortlessly bring your OMG.lol Now Page to life on your WordPress site with blocks and shortcodes.
+Add your OMG.lol Now Page your WordPress site with either blocks or shortcodes.
 
 == Description ==
 
-**Effortlessly bring your OMG.lol Now Page to life on your WordPress site.**
+**Embed Your OMG.lol Now Page to on your WordPress site.**
 
 Whether you're letting visitors know what you're up to, maintaining a personal status board, or just showing off your current vibe, this plugin makes it a breeze. Drop in a block, add a shortcode, and your Now Page is front and center — clean, simple, and totally you.
 
@@ -73,14 +73,3 @@ Yes, this plugin is completely free and open source.
 
 = 1.0.0 =
 * Initial release
-* Block editor support
-* Shortcode support
-* Settings page
-* Caching functionality
-* Markdown processing
-* Icon alias support
-
-== Upgrade Notice ==
-
-= 1.0.0 =
-Initial release of the Now Page via OMG.lol Connector plugin. 

@@ -1,8 +1,11 @@
 <?php
 /**
- * The main plugin file.
+ * The admin-specific functionality of the plugin.
  *
- * @package OMG_LOL_Now
+ * @link       https://omg.lol/now
+ * @package    OMG_LOL_Now
+ * @since      1.0.0
+ * @subpackage OMG_LOL_Now/includes
  */
 
 /**
@@ -65,10 +68,10 @@ class OMG_LOL_Now {
 		register_block_type(
 			'omg-lol-now/now-page',
 			array(
-				'editor_script'    => 'omg-lol-now-editor',
-				'editor_style'     => 'omg-lol-now-editor',
-				'style'            => 'omg-lol-now',
-				'render_callback'  => array( $this, 'render_block' ),
+				'editor_script'   => 'omg-lol-now-editor',
+				'editor_style'    => 'omg-lol-now-editor',
+				'style'           => 'omg-lol-now',
+				'render_callback' => array( $this, 'render_block' ),
 			)
 		);
 	}
@@ -83,14 +86,14 @@ class OMG_LOL_Now {
 			'omg-lol-now/v1',
 			'/now/(?P<username>[a-zA-Z0-9_-]+)',
 			array(
-				'methods' => 'GET',
-				'callback' => array( $this, 'get_now_page_rest' ),
+				'methods'             => 'GET',
+				'callback'            => array( $this, 'get_now_page_rest' ),
 				'permission_callback' => function () {
 					return current_user_can( 'edit_posts' );
 				},
-				'args' => array(
+				'args'                => array(
 					'username' => array(
-						'required' => true,
+						'required'          => true,
 						'validate_callback' => function ( $param ) {
 							return is_string( $param ) && ! empty( $param );
 						},
@@ -108,7 +111,7 @@ class OMG_LOL_Now {
 	 */
 	public function get_now_page_rest( $request ) {
 		$username = $request->get_param( 'username' );
-		$content = $this->get_now_page_content( $username );
+		$content  = $this->get_now_page_content( $username );
 
 		if ( is_wp_error( $content ) ) {
 			return $content;
@@ -149,19 +152,19 @@ class OMG_LOL_Now {
 		$username = isset( $attributes['username'] ) ? $attributes['username'] : get_option( 'omg_lol_now_username', '' );
 		// Get the content.
 			// Build the style string.
-			$style = '';
-			if ( isset( $attributes['backgroundColor'] ) ) {
-				$style .= 'background-color: ' . esc_attr( $attributes['backgroundColor'] ) . ';';
-			}
-			if ( isset( $attributes['margin'] ) ) {
-				$style .= 'margin: ' . esc_attr( $attributes['margin'] ) . 'px;';
-			}
-			if ( isset( $attributes['padding'] ) ) {
-				$style .= 'padding: ' . esc_attr( $attributes['padding'] ) . 'px;';
-			}
-			if ( isset( $attributes['borderRadius'] ) ) {
-				$style .= 'border-radius: ' . esc_attr( $attributes['borderRadius'] ) . 'px;';
-			}
+		$style = '';
+		if ( isset( $attributes['backgroundColor'] ) ) {
+			$style .= 'background-color: ' . esc_attr( $attributes['backgroundColor'] ) . ';';
+		}
+		if ( isset( $attributes['margin'] ) ) {
+			$style .= 'margin: ' . esc_attr( $attributes['margin'] ) . 'px;';
+		}
+		if ( isset( $attributes['padding'] ) ) {
+			$style .= 'padding: ' . esc_attr( $attributes['padding'] ) . 'px;';
+		}
+		if ( isset( $attributes['borderRadius'] ) ) {
+			$style .= 'border-radius: ' . esc_attr( $attributes['borderRadius'] ) . 'px;';
+		}
 		$content = $this->get_now_page_content( $username, $style );
 		// Build the style string.
 		// Wrap the content in a div with the styles.

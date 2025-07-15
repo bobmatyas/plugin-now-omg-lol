@@ -11,8 +11,8 @@ class OMG_LOL_Now_Admin {
 	 */
 	public function add_plugin_admin_menu() {
 		add_options_page(
-					__( 'Now via OMG.lol Settings', 'now-page-via-omg-lol-connector' ),
-		__( 'Now via OMG.lol', 'now-page-via-omg-lol-connector' ),
+			__( 'Now via OMG.lol Settings', 'now-page-via-omg-lol-connector' ),
+			__( 'Now via OMG.lol', 'now-page-via-omg-lol-connector' ),
 			'manage_options',
 			'omg-lol-now',
 			array( $this, 'display_plugin_admin_page' )

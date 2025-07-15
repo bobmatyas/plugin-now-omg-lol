@@ -1,6 +1,6 @@
-# ✨ Now Page via OMG.lol Connector
+# ✨ Now Page via OMG.lol
 
-**Effortlessly bring your OMG.lol Now Page to life on your WordPress site.**
+**Effortlessly bring your OMG.lol Now Page to your WordPress site.**
 
 Whether you're letting visitors know what you're up to, maintaining a personal status board, or just showing off your current vibe, this plugin makes it a breeze. Drop in a block, add a shortcode, and your Now Page is front and center — clean, simple, and totally you.
 

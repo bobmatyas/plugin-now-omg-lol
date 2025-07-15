@@ -31,7 +31,7 @@ class OMG_LOL_Now_API {
 	 */
 	public function get_now_page( $username ) {
 		// Check cache first.
-		$cache_key = 'omg_lol_now_' . sanitize_key( $username );
+		$cache_key      = 'omg_lol_now_' . sanitize_key( $username );
 		$cached_content = get_transient( $cache_key );
 
 		if ( false !== $cached_content ) {
@@ -39,7 +39,7 @@ class OMG_LOL_Now_API {
 		}
 
 		// Make API request.
-		$response = wp_remote_get( $this->api_base_url . urlencode( $username ) . '/now' );
+		$response = wp_remote_get( $this->api_base_url . rawurlencode( $username ) . '/now' );
 
 		if ( is_wp_error( $response ) ) {
 			return $response;
@@ -83,7 +83,7 @@ class OMG_LOL_Now_API {
 			function ( $matches ) {
 				$icon_name = $matches[1];
 				// Skip special placeholders like {last-updated}.
-				if ( in_array( $icon_name, array( 'last-updated' ) ) ) {
+				if ( in_array( $icon_name, array( 'last-updated' ), true ) ) {
 					return $matches[0];
 				}
 				return '<i class="fa-solid fa-' . esc_attr( $icon_name ) . '"></i>';
@@ -99,7 +99,7 @@ class OMG_LOL_Now_API {
 		}
 		if ( class_exists( 'OMG_LOL_Now_Vendor_Parsedown' ) ) {
 			$parsedown = new OMG_LOL_Now_Vendor_Parsedown();
-			$content = $parsedown->text( $content );
+			$content   = $parsedown->text( $content );
 		}
 
 		// Process any special placeholders.

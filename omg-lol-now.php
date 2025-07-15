@@ -22,9 +22,9 @@ define( 'OMG_LOL_NOW_VERSION', '1.0.0' );
 define( 'OMG_LOL_NOW_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'OMG_LOL_NOW_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
-// Load Composer autoloader for namespaced dependencies
+// Load Composer autoloader for namespaced dependencies.
 if ( file_exists( OMG_LOL_NOW_PLUGIN_DIR . 'includes/vendor/autoload.php' ) ) {
-    require_once OMG_LOL_NOW_PLUGIN_DIR . 'includes/vendor/autoload.php';
+	require_once OMG_LOL_NOW_PLUGIN_DIR . 'includes/vendor/autoload.php';
 }
 
 // Include required files.
