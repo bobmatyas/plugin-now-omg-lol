@@ -72,6 +72,35 @@ class OMG_LOL_Now {
 		}
 
 		if ( file_exists( $block_json_path ) ) {
+			// Register block assets first for WordPress.com compatibility.
+			$asset_file = include OMG_LOL_NOW_PLUGIN_DIR . 'build/index.asset.php';
+
+			// Register editor script.
+			wp_register_script(
+				'omg-lol-now-editor',
+				OMG_LOL_NOW_PLUGIN_URL . 'build/index.js',
+				isset( $asset_file['dependencies'] ) ? $asset_file['dependencies'] : array( 'wp-blocks', 'wp-element', 'wp-components', 'wp-block-editor', 'wp-i18n' ),
+				isset( $asset_file['version'] ) ? $asset_file['version'] : OMG_LOL_NOW_VERSION,
+				true
+			);
+
+			// Register editor style.
+			wp_register_style(
+				'omg-lol-now-editor',
+				OMG_LOL_NOW_PLUGIN_URL . 'build/editor.css',
+				array(),
+				OMG_LOL_NOW_VERSION
+			);
+
+			// Register frontend style.
+			wp_register_style(
+				'omg-lol-now',
+				OMG_LOL_NOW_PLUGIN_URL . 'build/style-index.css',
+				array(),
+				OMG_LOL_NOW_VERSION
+			);
+
+			// Register block using metadata.
 			register_block_type_from_metadata(
 				$block_json_path,
 				array(
