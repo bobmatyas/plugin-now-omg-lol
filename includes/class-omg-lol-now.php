@@ -65,15 +65,31 @@ class OMG_LOL_Now {
 	 * Register the block.
 	 */
 	public function register_block() {
-		register_block_type(
-			'omg-lol-now/now-page',
-			array(
-				'editor_script'   => 'omg-lol-now-editor',
-				'editor_style'    => 'omg-lol-now-editor',
-				'style'           => 'omg-lol-now',
-				'render_callback' => array( $this, 'render_block' ),
-			)
-		);
+		// Check if block.json exists in build directory (after build) or src directory (development).
+		$block_json_path = OMG_LOL_NOW_PLUGIN_DIR . 'build/block.json';
+		if ( ! file_exists( $block_json_path ) ) {
+			$block_json_path = OMG_LOL_NOW_PLUGIN_DIR . 'src/block.json';
+		}
+
+		if ( file_exists( $block_json_path ) ) {
+			register_block_type_from_metadata(
+				$block_json_path,
+				array(
+					'render_callback' => array( $this, 'render_block' ),
+				)
+			);
+		} else {
+			// Fallback to old registration method if block.json doesn't exist.
+			register_block_type(
+				'omg-lol-now/now-page',
+				array(
+					'editor_script'   => 'omg-lol-now-editor',
+					'editor_style'    => 'omg-lol-now-editor',
+					'style'           => 'omg-lol-now',
+					'render_callback' => array( $this, 'render_block' ),
+				)
+			);
+		}
 	}
 
 	/**
@@ -89,7 +105,9 @@ class OMG_LOL_Now {
 				'methods'             => 'GET',
 				'callback'            => array( $this, 'get_now_page_rest' ),
 				'permission_callback' => function () {
-					return current_user_can( 'edit_posts' );
+					// Allow authenticated users to access the REST API endpoint.
+					// On WordPress.com, this ensures the block editor can fetch preview content.
+					return is_user_logged_in();
 				},
 				'args'                => array(
 					'username' => array(

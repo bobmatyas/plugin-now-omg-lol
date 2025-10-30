@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Now Page via OMG.lol Connector
  * Description: Display OMG.lol /now pages in WordPress using blocks or shortcodes
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: Bob Matyas
  * Author URI: https://www.bobmatyas.com
  * License: GPL v2 or later
@@ -45,24 +45,12 @@ add_action( 'plugins_loaded', 'omg_lol_now_init' );
 /**
  * Enqueue block editor assets.
  *
+ * When using block.json, most assets are automatically enqueued by register_block_type_from_metadata().
+ * We only need to enqueue Font Awesome manually since it's not part of the block.json assets.
+ *
  * @return void
  */
 function omg_lol_now_enqueue_block_editor_assets() {
-	wp_enqueue_script(
-		'omg-lol-now-editor',
-		OMG_LOL_NOW_PLUGIN_URL . 'build/index.js',
-		array( 'wp-blocks', 'wp-element', 'wp-components', 'wp-data', 'wp-i18n' ),
-		OMG_LOL_NOW_VERSION,
-		true
-	);
-
-	wp_enqueue_style(
-		'omg-lol-now-editor',
-		OMG_LOL_NOW_PLUGIN_URL . 'build/editor.css',
-		array(),
-		OMG_LOL_NOW_VERSION
-	);
-
 	// Always load Font Awesome in editor since we can't predict if icons will be used.
 	wp_enqueue_style(
 		'font-awesome',
@@ -70,6 +58,30 @@ function omg_lol_now_enqueue_block_editor_assets() {
 		array(),
 		'6.4.0'
 	);
+
+	// If block.json doesn't exist, manually enqueue block assets as fallback.
+	$block_json_path = OMG_LOL_NOW_PLUGIN_DIR . 'build/block.json';
+	if ( ! file_exists( $block_json_path ) ) {
+		$block_json_path = OMG_LOL_NOW_PLUGIN_DIR . 'src/block.json';
+	}
+
+	if ( ! file_exists( $block_json_path ) ) {
+		// Fallback: manually enqueue assets if block.json doesn't exist.
+		wp_enqueue_script(
+			'omg-lol-now-editor',
+			OMG_LOL_NOW_PLUGIN_URL . 'build/index.js',
+			array( 'wp-blocks', 'wp-element', 'wp-components', 'wp-data', 'wp-i18n' ),
+			OMG_LOL_NOW_VERSION,
+			true
+		);
+
+		wp_enqueue_style(
+			'omg-lol-now-editor',
+			OMG_LOL_NOW_PLUGIN_URL . 'build/editor.css',
+			array(),
+			OMG_LOL_NOW_VERSION
+		);
+	}
 }
 add_action( 'enqueue_block_editor_assets', 'omg_lol_now_enqueue_block_editor_assets' );
 
