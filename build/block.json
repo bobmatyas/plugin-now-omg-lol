@@ -1,0 +1,42 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "omg-lol-now/now-page",
+  "title": "OMG.lol Now Page",
+  "category": "widgets",
+  "icon": "clock",
+  "description": "Display an OMG.lol now page.",
+  "keywords": [
+    "omg.lol",
+    "now page",
+    "status"
+  ],
+  "attributes": {
+    "username": {
+      "type": "string",
+      "default": ""
+    },
+    "backgroundColor": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+    "margin": {
+      "type": "number",
+      "default": 0
+    },
+    "padding": {
+      "type": "number",
+      "default": 20
+    },
+    "borderRadius": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "supports": {
+    "html": false
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./editor.css",
+  "style": "file:./style-index.css"
+}

@@ -1,7 +1,5 @@
 /vendor/
 /composer.lock
-/includes/vendor/
 node_modules/
-build/
 .DS_Store
 *.log 
