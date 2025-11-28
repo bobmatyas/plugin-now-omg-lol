@@ -1,10 +1,10 @@
 === Now Page via OMG.lol Connector ===
 Contributors: lastsplash
 Tags: omg.lol, now page, block, indieweb
-Requires at least: 5.0
-Tested up to: 6.8
-Requires PHP: 7.4
-Stable tag: 1.0.1
+Requires at least: 6.8
+Tested up to: 6.9
+Requires PHP: 8.2
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -70,6 +70,9 @@ Yes! You can override the default username in both the block editor and shortcod
 Yes, this plugin is completely free and open source.
 
 == Changelog ==
+
+= 1.0.2 - 11/28/25 =
+* Indicate WordPress v6.9 compatibility
 
 = 1.0.0 =
 * Initial release
