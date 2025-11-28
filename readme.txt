@@ -71,5 +71,8 @@ Yes, this plugin is completely free and open source.
 
 == Changelog ==
 
+= 1.0.2 - 11/28/25 =
+* Indicate WordPress v6.9 compatibility
+
 = 1.0.0 =
 * Initial release
