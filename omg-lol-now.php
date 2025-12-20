@@ -1,8 +1,9 @@
 <?php
 /**
  * Plugin Name: Now Page via OMG.lol Connector
+ * Plugin URI: https://www.bobmatyas.com/plugins/now-page-via-omg-lol-connector
  * Description: Display OMG.lol /now pages in WordPress using blocks or shortcodes
- * Version: 1.0.2
+ * Version: 1.0.3
  * Author: Bob Matyas
  * Author URI: https://www.bobmatyas.com
  * License: GPL v2 or later
