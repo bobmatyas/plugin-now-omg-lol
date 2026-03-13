@@ -55,6 +55,7 @@ const sanitizeHtml = (html) => {
 };
 
 registerBlockType('omg-lol-now/now-page', {
+    apiVersion: 3,
     title: __('OMG.lol Now Page', 'omg-lol-now'),
     description: __('Display an OMG.lol now page.', 'omg-lol-now'),
     category: 'widgets',
