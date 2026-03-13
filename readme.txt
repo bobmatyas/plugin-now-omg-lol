@@ -4,7 +4,7 @@ Tags: omg.lol, now page, block, indieweb
 Requires at least: 6.8
 Tested up to: 6.9
 Requires PHP: 8.2
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -70,6 +70,9 @@ Yes! You can override the default username in both the block editor and shortcod
 Yes, this plugin is completely free and open source.
 
 == Changelog ==
+
+= 1.0.4 - 03/12/26 =
+* Update Block API version
 
 = 1.0.3 - 12/20/25 =
 * Add plugin icon
