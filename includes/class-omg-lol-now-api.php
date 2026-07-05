@@ -92,11 +92,6 @@ class OMG_LOL_Now_API {
 		);
 
 		// Convert markdown to HTML using namespaced Parsedown.
-		if ( ! class_exists( 'OMG_LOL_Now_Vendor_Parsedown' ) ) {
-			error_log('OMG_LOL_Now_Vendor_Parsedown class does NOT exist in frontend!');
-		} else {
-			error_log('OMG_LOL_Now_Vendor_Parsedown class exists in frontend.');
-		}
 		if ( class_exists( 'OMG_LOL_Now_Vendor_Parsedown' ) ) {
 			$parsedown = new OMG_LOL_Now_Vendor_Parsedown();
 			$content   = $parsedown->text( $content );
