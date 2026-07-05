@@ -64,4 +64,4 @@ composer install
 composer strauss
 ```
 
-This includes development dependencies like Strauss itself. 
+This includes development dependencies like Strauss itself.

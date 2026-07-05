@@ -3,6 +3,7 @@
 /.github
 /.cursor
 /node_modules
+/docs
 
 .distignore
 .gitignore
