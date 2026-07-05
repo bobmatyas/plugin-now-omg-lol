@@ -3,7 +3,7 @@
  * Plugin Name: Now Page via OMG.lol Connector
  * Plugin URI: https://www.bobmatyas.com/plugins/now-page-via-omg-lol-connector
  * Description: Display OMG.lol /now pages in WordPress using blocks or shortcodes
- * Version: 1.0.4
+ * Version: 1.0.6
  * Author: Bob Matyas
  * Author URI: https://www.bobmatyas.com
  * License: GPL v2 or later
@@ -19,7 +19,7 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 // Define plugin constants.
-define( 'OMG_LOL_NOW_VERSION', '1.0.2' );
+define( 'OMG_LOL_NOW_VERSION', '1.0.6' );
 define( 'OMG_LOL_NOW_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'OMG_LOL_NOW_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
