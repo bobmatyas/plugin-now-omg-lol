@@ -1,10 +1,10 @@
 === Now Page via OMG.lol Connector ===
 Contributors: lastsplash
 Tags: omg.lol, now page, block, indieweb
-Requires at least: 6.8
-Tested up to: 6.9
+Requires at least: 6.9
+Tested up to: 7.0
 Requires PHP: 8.2
-Stable tag: 1.0.4
+Stable tag: 1.0.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
